@@ -5,6 +5,8 @@ import Loading from './components/loading';
 import Error from './components/error';
 import Main from './components/main';
 import Search from './components/search';
+import Header from './components/header';
+import Footer from './components/footer';
 
 export const AppContext = createContext();
 
@@ -48,10 +50,12 @@ function App() {
     <ChakraProvider>
       <AppContext.Provider value={contextValue}>
         <Container maxW="container.xl">
+          <Header />
           <Search />
           {loading && <Loading />}
           {error && <Error message={error} />}
           {!loading && !error && <Main />}
+          <Footer />
         </Container>
       </AppContext.Provider>
     </ChakraProvider>
