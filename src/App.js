@@ -1,40 +1,59 @@
-import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import React, { createContext, useEffect, useState } from 'react';
+import { ChakraProvider, Container } from '@chakra-ui/react';
+import { useApi } from './lib/api';
+import Loading from './components/loading';
+import Error from './components/error';
+import Main from './components/main';
+import Search from './components/search';
+
+export const AppContext = createContext();
 
 function App() {
+  const [page, setPage] = useState('');
+  const [name, setName] = useState('');
+  const [status, setStatus] = useState('');
+  const [gender, setGender] = useState('');
+
+  useEffect(() => {
+    const currentURL = new URL(window.location.href);
+
+    setPage(currentURL.searchParams.get('page') || 1);
+    setName(currentURL.searchParams.get('name') || '');
+    setStatus(currentURL.searchParams.get('status') || '');
+    setGender(currentURL.searchParams.get('gender') || '');
+  }, []);
+
+  const { loading, error, info, results } = useApi({
+    page,
+    name,
+    status,
+    gender,
+  });
+
+  const contextValue = {
+    page,
+    setPage,
+    name,
+    setName,
+    status,
+    setStatus,
+    gender,
+    setGender,
+    loading,
+    info,
+    results,
+  };
+
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
+    <ChakraProvider>
+      <AppContext.Provider value={contextValue}>
+        <Container maxW="container.xl">
+          <Search />
+          {loading && <Loading />}
+          {error && <Error message={error} />}
+          {!loading && !error && <Main />}
+        </Container>
+      </AppContext.Provider>
     </ChakraProvider>
   );
 }
