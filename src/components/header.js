@@ -1,12 +1,12 @@
-import { Box, Link } from '@chakra-ui/react';
+import { Flex, Image, Link } from '@chakra-ui/react';
 
 function Header() {
   return (
-    <Box>
-      <Link href="/" fontSize="2xl" fontWeight="bold">
-        rickandmorty
+    <Flex justifyContent="center">
+      <Link href="/">
+        <Image src="./logo192.png" w="24" alt="Rick logo" />
       </Link>
-    </Box>
+    </Flex>
   );
 }
 
