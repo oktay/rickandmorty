@@ -1,11 +1,13 @@
-import { Box, Link } from "@chakra-ui/react";
+import { Box, Link } from '@chakra-ui/react';
 
 function Header() {
   return (
     <Box pt="8">
-      <Link href="/" fontSize="2xl" fontWeight="bold">rickandmorty</Link>
+      <Link href="/" fontSize="2xl" fontWeight="bold">
+        rickandmorty
+      </Link>
     </Box>
-  )
+  );
 }
 
-export default Header
+export default Header;
