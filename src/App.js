@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { ChakraProvider, Container } from '@chakra-ui/react';
+import { ChakraProvider, Container, Stack } from '@chakra-ui/react';
 import { useApi } from './lib/api';
 import Loading from './components/loading';
 import Error from './components/error';
@@ -49,13 +49,15 @@ function App() {
   return (
     <ChakraProvider>
       <AppContext.Provider value={contextValue}>
-        <Container maxW="container.xl">
-          <Header />
-          <Search />
-          {loading && <Loading />}
-          {error && <Error message={error} />}
-          {!loading && !error && <Main />}
-          <Footer />
+        <Container maxW="container.xl" py="8">
+          <Stack spacing="8">
+            <Header />
+            <Search />
+            {loading && <Loading />}
+            {error && <Error message={error} />}
+            {!loading && !error && <Main />}
+            <Footer />
+          </Stack>
         </Container>
       </AppContext.Provider>
     </ChakraProvider>

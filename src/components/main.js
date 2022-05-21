@@ -1,4 +1,4 @@
-import { Grid } from '@chakra-ui/react';
+import { Grid, Stack } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { AppContext } from '../App';
 import Card from './card';
@@ -8,7 +8,7 @@ function Main() {
   const { results } = useContext(AppContext);
 
   return (
-    <>
+    <Stack spacing="8">
       <Grid
         templateColumns={{
           base: '1fr',
@@ -22,7 +22,7 @@ function Main() {
         ))}
       </Grid>
       <Pagination />
-    </>
+    </Stack>
   );
 }
 

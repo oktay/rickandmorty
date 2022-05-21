@@ -43,7 +43,7 @@ function Search() {
   }
 
   return (
-    <Stack py="8" spacing="8">
+    <Stack spacing="8">
       <HStack>
         <FormControl as="form" onSubmit={handleSubmit}>
           <InputGroup>

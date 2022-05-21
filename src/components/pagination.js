@@ -17,7 +17,7 @@ function Pagination() {
   }
 
   return (
-    <HStack py="8" justifyContent="center">
+    <HStack justifyContent="center">
       <Button
         onClick={() => handlePagination('prev')}
         isDisabled={!info.prev}
