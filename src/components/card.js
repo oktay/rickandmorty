@@ -29,7 +29,7 @@ function Card({ character }) {
       spacing="0"
       direction={{ base: 'row', sm: 'column' }}
     >
-      <AspectRatio ratio={1 / 1} w={{ base: '32', sm: 'full' }}>
+      <AspectRatio ratio={1 / 1} w={{ base: '32', sm: 'full' }} minW="32">
         <Skeleton
           isLoaded={imgLoaded}
           roundedTopLeft={{ base: 'md', sm: 'md' }}
@@ -47,9 +47,11 @@ function Card({ character }) {
       </AspectRatio>
       <Stack px="4" py="2">
         <HStack>
-          <Heading size="sm" noOfLines={1}>
-            {character.name}
-          </Heading>
+          <Tooltip label={character.name}>
+            <Heading size="sm" noOfLines={1}>
+              {character.name}
+            </Heading>
+          </Tooltip>
           <Badge colorScheme={statusColor}>{character.status}</Badge>
         </HStack>
         <Stack>
