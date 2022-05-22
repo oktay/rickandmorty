@@ -12,7 +12,7 @@ function Main() {
       <Grid
         templateColumns={{
           base: '1fr',
-          sm: 'repeat(2, 1fr)',
+          sm: 'repeat(3, 1fr)',
           lg: 'repeat(4, 1fr)',
         }}
         gap="8"
