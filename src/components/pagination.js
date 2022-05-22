@@ -22,10 +22,11 @@ function Pagination() {
         onClick={() => handlePagination('prev')}
         isDisabled={!info.prev}
         leftIcon={<FaChevronLeft />}
+        variant="outline"
       >
         Prev
       </Button>
-      <Select variant="filled" w="auto" onChange={handleChange} value={page}>
+      <Select w="auto" onChange={handleChange} value={page}>
         {Array(info.pages)
           .fill({})
           .map((_, index) => (
@@ -38,6 +39,7 @@ function Pagination() {
         onClick={() => handlePagination('next')}
         isDisabled={!info.next}
         rightIcon={<FaChevronRight />}
+        variant="outline"
       >
         Next
       </Button>
