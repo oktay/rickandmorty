@@ -23,12 +23,23 @@ function Card({ character }) {
       : 'gray';
 
   return (
-    <Stack boxShadow="sm" rounded="md" spacing="0">
-      <AspectRatio ratio={1 / 1}>
-        <Skeleton isLoaded={imgLoaded} roundedTop="md">
+    <Stack
+      boxShadow="sm"
+      rounded="md"
+      spacing="0"
+      direction={{ base: 'row', sm: 'column' }}
+    >
+      <AspectRatio ratio={1 / 1} w={{ base: '32', sm: 'full' }}>
+        <Skeleton
+          isLoaded={imgLoaded}
+          roundedTopLeft={{ base: 'md', sm: 'md' }}
+          roundedTopRight={{ base: 'none', sm: 'md' }}
+          roundedBottomLeft={{ base: 'md', sm: 'none' }}
+          minW={{ base: '32', sm: 'full' }}
+        >
           <Image
-            w="full"
-            h="auto"
+            w={{ base: '32', sm: 'full' }}
+            h={{ base: 'full', sm: 'auto' }}
             src={character.image}
             onLoad={() => setImgLoaded(true)}
           />
